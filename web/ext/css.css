@@ -1,0 +1,12 @@
+p.box{
+float: right;
+max-width: 80px;
+}
+div.ff{
+	color:#ffffff;
+	background-color:#000000;
+}
+div.crea{
+	display:block;
+	clear:both;
+}

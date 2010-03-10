@@ -1,0 +1,1 @@
+../spam/web/mail.jsp
