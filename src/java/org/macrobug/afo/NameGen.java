@@ -1,22 +1,18 @@
-// Decompiled by Jad v1.5.8g. Copyright 2001 Pavel Kouznetsov.
-// Jad home page: http://www.kpdus.com/jad.html
-// Decompiler options: fullnames braces deadcode 
-// Source File Name:   NameGen.java
 package org.macrobug.afo;
 
-import java.io.File;
+import java.io.*;
 
 public class NameGen {
 
-    public NameGen(java.lang.String path) {
+    public NameGen(String path) {
         c = "abcdefghijklmnopqrstuvwxyz1234567890".toCharArray();
         this.path = path;
     }
 
-    public java.lang.String getName(final java.lang.String ext) {
-        java.lang.String s[] = (new File(path)).list(new java.io.FilenameFilter() {
+    public String getName(final String ext) {
+        String s[] = (new File(path)).list(new FilenameFilter() {
 
-            public boolean accept(java.io.File dir, java.lang.String name) {
+            public boolean accept(File dir, String name) {
                 if (!name.contains(".")) {
                     return false;
                 } else {
@@ -24,7 +20,7 @@ public class NameGen {
                 }
             }
         });
-        java.lang.String t = "";
+        String t = "";
         for (int i = 0; i < c.length; i++) {
             for (int j = 0; j < c.length; j++) {
                 for (int k = 0; k < c.length; k++) {
@@ -52,11 +48,11 @@ public class NameGen {
         return null;
     }
 
-    public static void main(java.lang.String s[]) {
+    public static void main(String s[]) {
         org.macrobug.afo.NameGen ng = new NameGen(".");
-        java.lang.System.out.println(ng.getName("png"));
-        java.lang.System.out.println(ng.getName("txt"));
+        System.out.println(ng.getName("png"));
+        System.out.println(ng.getName("txt"));
     }
-    private java.lang.String path;
+    private String path;
     private char c[];
 }

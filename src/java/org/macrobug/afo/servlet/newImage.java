@@ -17,13 +17,13 @@ import org.macrobug.afo.Image2Db;
 public class newImage extends javax.servlet.http.HttpServlet
 {
 
-	public newImage()
-	{
-	}
+  public newImage()
+  {
+  }
 
-	protected void processRequest(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response)
-		throws javax.servlet.ServletException, java.io.IOException
-	{
+  protected void processRequest(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response)
+    throws javax.servlet.ServletException, java.io.IOException
+  {
             java.io.PrintWriter out=null;
             response.setContentType("text/html;charset=UTF-8");
             try {
@@ -38,10 +38,10 @@ public class newImage extends javax.servlet.http.HttpServlet
                     break;
                 }
                 org.apache.commons.fileupload.FileItemStream item = iter.next();
-                java.lang.String name = item.getFieldName();
+                String name = item.getFieldName();
                 java.io.InputStream stream = item.openStream();
                 if (item.isFormField()) {
-                    java.lang.System.out.println((new StringBuilder()).append("Form field ").append(name).append(" with value ").append(org.apache.commons.fileupload.util.Streams.asString(stream)).append(" detected.").toString());
+                    System.out.println((new StringBuilder()).append("Form field ").append(name).append(" with value ").append(org.apache.commons.fileupload.util.Streams.asString(stream)).append(" detected.").toString());
                 } else {
                     java.io.File f = java.io.File.createTempFile("tmp", "zip");
                     java.io.FileOutputStream fos = new FileOutputStream(f);
@@ -50,14 +50,14 @@ public class newImage extends javax.servlet.http.HttpServlet
                     }
                     fos.flush();
                     fos.close();
-                    java.lang.String s = getServletConfig().getInitParameter("type");
+                    String s = getServletConfig().getInitParameter("type");
                     if (s.equals("image")) {
                         org.macrobug.afo.Image2Db m = new Image2Db(f, getServletContext().getRealPath("image"));
                         if (m.run()) {
                             out.println((new StringBuilder()).append(item.getName()).append(" caricato riuscita").toString());
                         }
                     } else if (s.equals("icon")) {
-                        s = (java.lang.String) request.getSession().getAttribute("user");
+                        s = (String) request.getSession().getAttribute("user");
                         org.macrobug.afo.Icon2Db m = new Icon2Db(new ZipFile(f), getServletContext().getRealPath("icon"), s);
                         if (m.run()) {
                             out.println((new StringBuilder()).append(item.getName()).append(" caricato riuscita").toString());
@@ -76,22 +76,22 @@ public class newImage extends javax.servlet.http.HttpServlet
             out.close();
             Logger.getLogger(newImage.class.getName()).log(Level.SEVERE, null, ex);
         }
-	}
+  }
 
-	protected void doGet(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response)
-		throws javax.servlet.ServletException, java.io.IOException
-	{
-		processRequest(request, response);
-	}
+  protected void doGet(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response)
+    throws javax.servlet.ServletException, java.io.IOException
+  {
+    processRequest(request, response);
+  }
 
-	protected void doPost(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response)
-		throws javax.servlet.ServletException, java.io.IOException
-	{
-		processRequest(request, response);
-	}
+  protected void doPost(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response)
+    throws javax.servlet.ServletException, java.io.IOException
+  {
+    processRequest(request, response);
+  }
 
-	public java.lang.String getServletInfo()
-	{
-		return "Short description";
-	}
+  public String getServletInfo()
+  {
+    return "Short description";
+  }
 }

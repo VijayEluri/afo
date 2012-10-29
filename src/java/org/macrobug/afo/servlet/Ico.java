@@ -12,38 +12,38 @@ import org.mortbay.util.WriterOutputStream;
 public class Ico extends javax.servlet.http.HttpServlet
 {
 
-	public Ico()
-	{
-	}
+  public Ico()
+  {
+  }
 
-	protected void processRequest(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response)
-		throws javax.servlet.ServletException, java.io.IOException
-	{
-		java.io.PrintWriter out;
-		response.setContentType("image/png");
-		out = response.getWriter();
-		java.lang.String user = request.getParameter("user");
-		org.macrobug.afo.bean.Icon i[] = (new User(user)).getIcons();
-		java.lang.String path = getServletContext().getRealPath("icon");
-		org.macrobug.util.Random r = org.macrobug.util.Random.getRandom();
-		javax.imageio.ImageIO.write(javax.imageio.ImageIO.read(new File(path, i[r.nextInt(i.length)].getPath())), "png", new WriterOutputStream(out, response.getCharacterEncoding()));
-		out.close();
-	}
+  protected void processRequest(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response)
+    throws javax.servlet.ServletException, java.io.IOException
+  {
+    java.io.PrintWriter out;
+    response.setContentType("image/png");
+    out = response.getWriter();
+    String user = request.getParameter("user");
+    org.macrobug.afo.bean.Icon i[] = (new User(user)).getIcons();
+    String path = getServletContext().getRealPath("icon");
+    org.macrobug.util.Random r = org.macrobug.util.Random.getRandom();
+    javax.imageio.ImageIO.write(javax.imageio.ImageIO.read(new File(path, i[r.nextInt(i.length)].getPath())), "png", new WriterOutputStream(out, response.getCharacterEncoding()));
+    out.close();
+  }
 
-	protected void doGet(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response)
-		throws javax.servlet.ServletException, java.io.IOException
-	{
-		processRequest(request, response);
-	}
+  protected void doGet(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response)
+    throws javax.servlet.ServletException, java.io.IOException
+  {
+    processRequest(request, response);
+  }
 
-	protected void doPost(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response)
-		throws javax.servlet.ServletException, java.io.IOException
-	{
-		processRequest(request, response);
-	}
+  protected void doPost(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response)
+    throws javax.servlet.ServletException, java.io.IOException
+  {
+    processRequest(request, response);
+  }
 
-	public java.lang.String getServletInfo()
-	{
-		return "Short description";
-	}
+  public String getServletInfo()
+  {
+    return "Short description";
+  }
 }
