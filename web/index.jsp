@@ -51,7 +51,6 @@ TODO Creare una pagina per la cancellazione delle immagini
     <a href="http://validator.w3.org/check?uri=referer"><img
         src="http://www.pdsolution.it/img/logo_1.jpg"
         alt="Valid XHTML 1.1" height="15" width="80" /></a>
-        <a href="mail/me"><img src="image/mail.gif" alt="mail me" height="15" width="80" /></a>
   </p>
     </body>
 </html>
