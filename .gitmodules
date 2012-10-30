@@ -1,0 +1,6 @@
+[submodule "spam"]
+	path = spam
+	url = git@github.com:sadjehwty/anti-spam.git
+[submodule "faq"]
+	path = faq
+	url = git@github.com:sadjehwty/faq-rss.git
